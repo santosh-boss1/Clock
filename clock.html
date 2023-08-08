@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        body
+        {
+            box-sizing: border-box;
+            background-image: linear-gradient(to right bottom,white,rgb(24, 247, 110));
+            height: 100vh;
+        }
+        .container
+        {
+            background-image: linear-gradient(to right, rgb(210, 180, 218),rgb(96, 89, 94));
+            text-align: center;
+            margin: 1% 35%;
+            padding-bottom: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px 10px rgb(34, 248, 6) inset,0 0 10px 15px rgb(9, 243, 107);
+        }
+        .clock h1
+        {
+            font-size: 6em;
+            color: rgb(195, 192, 192); 
+            width: 90%;
+            margin: 0;
+            padding: 0;
+        }
+        #hour
+        {
+            color:rgb(5, 127, 250);
+        }
+        #minutes
+        {
+            color:rgb(64, 18, 231);
+        }
+        #seconds
+        {
+            color: red;
+        }
+        #sess
+        {
+            color: rgb(12, 221, 92);
+        }
+        .clock
+        {
+            display: flex;
+        }
+        .right_part
+        {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            right: 4rem;
+            font-size: large;
+        }
+        .right_part span
+        {
+            margin-top: 1.5rem;
+        }
+        h3
+        {
+            margin: 0;
+            color: rgb(157, 252, 4);
+        }
+    </style>
+</head>
+
+<body onload="displayTime(),displayDate()">
+    <h1 style="text-align: center;font-size: 3em;color: rgb(2, 147, 21);">Digital Clock</h1>
+    <div class="container">
+        <div class="clock">
+            <h1><span id="hour"></span>:<span id="minutes"></span></h1>
+            <div class="right_part">
+                <span id="sess"></span><span id="seconds"></span>
+            </div>
+        </div>
+       
+    </div>
+    <script>
+        function displayTime() {
+            const currTime = new Date();
+            var hour = currTime.getHours();
+            var min = currTime.getMinutes();
+            var sec = currTime.getSeconds();
+
+            var session = "AM";
+            if (hour == 0) {
+                hour = 12;
+            }
+            if (hour > 12) {
+                hour = hour - 12;
+                session = "PM";
+            }
+            hour = (hour < 10) ? "0" + hour : hour;
+            min = (min < 10) ? "0" + min : min;
+            sec = (sec < 10) ? "0" + sec : sec;
+            document.getElementById("hour").innerHTML=hour;
+            document.getElementById("minutes").innerHTML=min;
+            document.getElementById("seconds").innerHTML=sec;
+            document.getElementById("sess").innerHTML=session;
+            setTimeout(displayTime, 1000);
+        }
+
+       
+
+    </script>
+</body>
+
+</html>
